@@ -1,41 +1,36 @@
+import 'package:corona_patients_number/data_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends ConsumerStatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
-  var number;
+class _MyAppState extends ConsumerState<MyApp> {
 
-  Future getData() async {
-    http.Response response = await http.get(Uri.parse(
-        "https://opendata.corona.go.jp/api/Covid19JapanAll?&dataName=長崎県"));
-
-    var data = jsonDecode(response.body);
-
-    setState(() {
-      this.number = data['itemList'][0]['npatients'];
-    });
-    print(number);
-  }
 
   @override
   void initState() {
     super.initState();
-    getData();
   }
 
   @override
   Widget build(BuildContext context) {
+
+    final numberProvider = ref.watch(dataProvider);
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -52,12 +47,11 @@ class _MyAppState extends State<MyApp> {
               SizedBox(
                 height: 60,
               ),
-              Text(
-                number != null ? number.toString() : '更新中',
-                style: TextStyle(
-                  fontSize: 40,
-                ),
-              ),
+              numberProvider.when(
+                  data: (data) => Text(data,style: TextStyle(fontSize: 40),),
+                  error: (error,stack) => Text('怒ってます！'),
+                  loading: () => CircularProgressIndicator()
+              )
             ],
           ),
         ),
