@@ -5,9 +5,12 @@ import 'dart:convert';
 
 final dataProvider = FutureProvider((ref) async{
   var number;
+  String cityName2 = '東京都';
 
   http.Response response =
-      await http.get(Uri.parse("https://opendata.corona.go.jp/api/Covid19JapanAll?date=20220215&dataName=長崎県"));
+      await http.get(Uri.parse(
+          "https://opendata.corona.go.jp/api/Covid19JapanAll?&dataName=$cityName2",
+      ));
 
 
   Map<String, dynamic> data = jsonDecode(response.body);
