@@ -9,13 +9,20 @@ final dataProvider = FutureProvider((ref) async{
 
   http.Response response =
       await http.get(Uri.parse(
-          "https://opendata.corona.go.jp/api/Covid19JapanAll?&dataName=$cityName2",
+          "https://www3.nhk.or.jp/n-data/special/coronavirus/data/latest-pref-data-max.json",
       ));
 
+  if (response.statusCode == 200) {
+    Map<String, dynamic> data = jsonDecode(utf8.decode(response.bodyBytes));
+    number = data['data47'][0]['new'];
+    print("ok");
+  }else{
+    print("noooo");
+  }
 
-  Map<String, dynamic> data = jsonDecode(response.body);
 
-  number = data['itemList'][0]['npatients'];
+
+  // number = 0;
 
   print(number);
 

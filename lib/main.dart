@@ -23,7 +23,7 @@ class _MyAppState extends ConsumerState<MyApp> {
   void initState() {
     super.initState();
   }
-  
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,61 +38,61 @@ class _MyAppState extends ConsumerState<MyApp> {
         ),
         body: Column(
           children: [
-            SizedBox(
-              height: 100,
-            ),
-            Center(
-              child: Container(
-                width: 300,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      hintText: '都道府県名を入力してください',
-                  ),
-                  onChanged: (value) {
-                    cityName = value;
-                  },
-                ),
-              ),
-            ),
-            TextButton(
-                onPressed: () {
-                  ;
-                },
-                child: Text('検索'),
-            ),
-            SizedBox(
-              height: 100,
-            ),
-            Text(
-              '$cityNameコロナ感染者累計',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
+            // SizedBox(
+            //   height: 100,
+            // ),
+            // Center(
+            //   child: Container(
+            //     width: 300,
+            //     child: TextFormField(
+            //       decoration: InputDecoration(
+            //         hintText: '都道府県名を入力してください',
+            //       ),
+            //       onChanged: (value) {
+            //         cityName = value;
+            //       },
+            //     ),
+            //   ),
+            // ),
+            // TextButton(
+            //   onPressed: () {
+            //     ;
+            //   },
+            //   child: Text('検索'),
+            // ),
+            // SizedBox(
+            //   height: 100,
+            // ),
+            // Text(
+            //   '$cityNameコロナ感染者累計',
+            //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            // ),
             SizedBox(
               height: 60,
             ),
             numberProvider.when(
-                data: (data) => Text(
-                      data,
-                      style: TextStyle(fontSize: 30),
-                    ),
-                error: (error, stack) => Text('怒ってます！'),
-                loading: () => CircularProgressIndicator(),
+              data: (data) => Text(
+                data.toString(),
+                style: TextStyle(fontSize: 30),
+              ),
+              error: (error, stack) => Text('怒ってます！'),
+              loading: () => CircularProgressIndicator(),
             ),
-            // SizedBox(
-            //   child: Echarts(
-            //     extensions: [liquidScript],
-            //     option: '''
-            //         {
-            //           series: [{
-            //               type: 'liquidFill',
-            //               data: [0.6]
-            //           }]
-            //         }
-            //       ''',
-            //   ),
-            //   width: 300,
-            //   height: 300,
-            // ),
+            SizedBox(
+              child: Echarts(
+                extensions: [liquidScript],
+                option: '''
+                    {
+                      series: [{
+                          type: 'liquidFill',
+                          data: [0.6]
+                      }]
+                    }
+                  ''',
+              ),
+              width: 300,
+              height: 300,
+            ),
           ],
         ),
       ),
