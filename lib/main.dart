@@ -1,9 +1,8 @@
-import 'package:corona_patients_number/data_provider.dart';
+import 'package:corona_patients_number/service/data_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_echarts/flutter_echarts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:flutter/cupertino.dart';
+import 'liquid_script.dart' show liquidScript;
 
 void main() {
   runApp(ProviderScope(child: MyApp()));
@@ -32,6 +31,7 @@ class _MyAppState extends ConsumerState<MyApp> {
 
 
     return MaterialApp(
+      // theme: ThemeData(useMaterial3: true),
       home: Scaffold(
         appBar: AppBar(
           title: Text('感染者数'),
@@ -60,9 +60,8 @@ class _MyAppState extends ConsumerState<MyApp> {
                 },
                 child: Text('検索'),
             ),
-
             SizedBox(
-              height: 200,
+              height: 100,
             ),
             Text(
               '$cityNameコロナ感染者累計',
@@ -74,10 +73,26 @@ class _MyAppState extends ConsumerState<MyApp> {
             numberProvider.when(
                 data: (data) => Text(
                       data,
-                      style: TextStyle(fontSize: 40),
+                      style: TextStyle(fontSize: 30),
                     ),
                 error: (error, stack) => Text('怒ってます！'),
-                loading: () => CircularProgressIndicator())
+                loading: () => CircularProgressIndicator(),
+            ),
+            // SizedBox(
+            //   child: Echarts(
+            //     extensions: [liquidScript],
+            //     option: '''
+            //         {
+            //           series: [{
+            //               type: 'liquidFill',
+            //               data: [0.6]
+            //           }]
+            //         }
+            //       ''',
+            //   ),
+            //   width: 300,
+            //   height: 300,
+            // ),
           ],
         ),
       ),
