@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/drop_down_button_menu.dart';
-import '../perf_num_state.dart';
+import '../perf_info_state.dart';
 
 class FirstPage extends ConsumerWidget {
   const FirstPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    int prefValue = ref.watch(prefNumProvider);
+    int prefValue = ref.watch(prefInfoProvider);
 
     print(prefValue);
 
     return Scaffold(
+      backgroundColor: const Color(0xFF70C495),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -30,6 +31,9 @@ class FirstPage extends ConsumerWidget {
                       builder: (context) => SecondScreen(value: prefValue)),
                 );
               },
+              style: ButtonStyle(
+                // backgroundColor: Color(0xFF70C495);
+              ),
               child: const Text("tap me!"),
             ),
           ],
