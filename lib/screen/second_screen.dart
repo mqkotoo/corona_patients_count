@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../service/data.dart';
 
 class SecondScreen extends StatefulWidget {
-  int value;
+  final int value;
 
-  SecondScreen({Key? key, required this.value}) : super(key: key);
+  const SecondScreen({Key? key, required this.value}) : super(key: key);
 
   @override
   State<SecondScreen> createState() => _SecondScreenState();
@@ -21,7 +21,6 @@ class _SecondScreenState extends State<SecondScreen> {
   DataModel dataModel = DataModel();
 
   Future getCityData() async {
-
     //何県かまでの情報が入っている ex(0,1,2
     var cityInfo = await dataModel.getCityData(widget.value);
 
@@ -45,15 +44,19 @@ class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: !isLoading ? Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+      body: !isLoading
+          ? Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(cityName),
                   Text(patientCount.toString()),
                 ],
               ),
-          ):Center(child: Text("loading..."),)
+            )
+          : const Center(
+              child: Text("loading..."),
+            ),
     );
   }
 }

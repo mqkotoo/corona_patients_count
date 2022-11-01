@@ -1,21 +1,17 @@
+import 'package:corona_patients_number/perf_num_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'pref_data.dart';
 
-class DropdownButtonMenu extends StatefulWidget {
-  const DropdownButtonMenu({Key? key}) : super(key: key);
+class DropdownButtonMenu extends ConsumerWidget {
 
   @override
-  State<DropdownButtonMenu> createState() => _DropdownButtonMenuState();
-}
+  Widget build(BuildContext context,WidgetRef ref) {
 
-class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
+    //選択中の都道府県表示のために形として定義しておく　可読性のために
+    int prefNum = ref.watch(prefNumProvider);
 
-  // number of tokyo
-  int prefValue = 12;
-
-  @override
-  Widget build(BuildContext context) {
     return DropdownButton<int>(
       items: prefData
           .map((prefString, prefNum) {
@@ -28,12 +24,10 @@ class _DropdownButtonMenuState extends State<DropdownButtonMenu> {
           })
           .values
           .toList(),
-      value: prefValue,
+      value: prefNum,
       onChanged: (int? value) {
-        setState(() {
-          prefValue = value!;
-        });
-        print(prefValue);
+          // prefValue = value!;
+          ref.read(prefNumProvider.notifier).state = value!;
       },
     );
   }
