@@ -12,29 +12,26 @@ class FirstPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     int prefValue = ref.watch(prefInfoProvider);
 
-    print(prefValue);
-
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "コロナ危険度チェック",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30),
             ),
-            SizedBox(height: 60),
-            DropdownButtonMenu(),
+            const SizedBox(height: 60),
+            const DropdownButtonMenu(),
             const SizedBox(height: 50),
             SizedBox(
               width: 100,
               height: 50,
               child: ElevatedButton(
                 onPressed: () {
-                  print(prefValue);
                   Navigator.push(
                     context,
                     MaterialPageRoute(

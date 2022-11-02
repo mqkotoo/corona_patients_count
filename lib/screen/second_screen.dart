@@ -42,9 +42,6 @@ class _SecondScreenState extends State<SecondScreen> {
 
     risk = double.parse(riskNum.toStringAsFixed(2));
 
-    print(cityName);
-    print(patientCount);
-
     isLoading = false;
 
     setState(() {});
@@ -68,7 +65,7 @@ class _SecondScreenState extends State<SecondScreen> {
                 Text(
                   cityName,
                   style:
-                      TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
+                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
                 ),
                 // SizedBox(height: 30),
                 Stack(
@@ -77,7 +74,7 @@ class _SecondScreenState extends State<SecondScreen> {
                     //危険度
                     SizedBox(
                       child: Echarts(
-                        extensions: [liquidScript],
+                        extensions: const [liquidScript],
                         option: '''
                   {
                     series: [{
@@ -94,7 +91,7 @@ class _SecondScreenState extends State<SecondScreen> {
                       top: 50,
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 160),
-                        child: Text(
+                        child: const Text(
                           "危険度",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -123,7 +120,7 @@ class _SecondScreenState extends State<SecondScreen> {
                       Navigator.pop(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => FirstPage()),
+                            builder: (context) => const FirstPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(

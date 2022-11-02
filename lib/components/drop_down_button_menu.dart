@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'pref_data.dart';
 
 class DropdownButtonMenu extends ConsumerWidget {
+  const DropdownButtonMenu({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
