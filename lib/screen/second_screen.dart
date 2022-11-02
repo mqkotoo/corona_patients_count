@@ -1,3 +1,4 @@
+import 'package:corona_patients_number/screen/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
 
@@ -58,76 +59,88 @@ class _SecondScreenState extends State<SecondScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFE1F9F8),
       body: !isLoading
-          ? Container(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+          ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  cityName,
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
+                ),
+                // SizedBox(height: 30),
+                Stack(
+                  alignment: AlignmentDirectional.topStart,
                   children: [
-                    Text(
-                      cityName,
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                    //危険度
+                    SizedBox(
+                      child: Echarts(
+                        extensions: [liquidScript],
+                        option: '''
+                  {
+                    series: [{
+                        type: 'liquidFill',
+                        data: [$risk]
+                    }]
+                  }
+                ''',
+                      ),
+                      width: 500,
+                      height: 416,
                     ),
-                    SizedBox(height: 70),
-                    Stack(
-                      alignment: AlignmentDirectional.topStart,
-                      children: [
-                        //危険度
-                        SizedBox(
-                          child: Echarts(
-                            extensions: [liquidScript],
-                            option: '''
-                      {
-                        series: [{
-                            type: 'liquidFill',
-                            data: [$risk]
-                        }]
-                      }
-                    ''',
-                          ),
-                          width: 500,
-                          height: 416,
-                        ),
-                        Positioned(
-                          top: 50,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 90),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: const <Widget>[
-                                Text(
-                                  "危険度",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ],
-                            ),
+                    Positioned(
+                      top: 50,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 160),
+                        child: Text(
+                          "危険度",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
                           ),
                         ),
-                        Positioned(
-                          bottom: 40,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 145),
-                            child: Text(
-                              "感染者数：${patientCount.toString()}",
-                              style: const TextStyle(fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                    // SizedBox(height: 20),
-
-                    const SizedBox(height: 20),
-                    // Text("max感染者数：${maxPatientCount.toString()}"),
-                    // SizedBox(height:30),
+                    Positioned(
+                      bottom: 40,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 130),
+                        child: Text(
+                          "感染者数：${patientCount.toString()}",
+                          style: const TextStyle(fontSize: 22),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            )
+                SizedBox(
+                  width: 100,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FirstPage()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      onPrimary: Colors.black,
+                      elevation: 10,
+                    ),
+                    child: const Text("←",style: TextStyle(fontSize: 25),),
+                  ),
+                ),
+                // SizedBox(height: 20),
+
+                const SizedBox(height: 20),
+                // Text("max感染者数：${maxPatientCount.toString()}"),
+                // SizedBox(height:30),
+              ],
+            ),
+          )
           : const Center(
               child: Text("loading..."),
             ),

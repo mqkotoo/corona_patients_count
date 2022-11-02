@@ -15,26 +15,38 @@ class FirstPage extends ConsumerWidget {
     print(prefValue);
 
     return Scaffold(
-      backgroundColor: const Color(0xFF70C495),
+      backgroundColor: const Color(0xFFE1F9F8),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Text(
+              "コロナ危険度チェック",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30),
+            ),
+            SizedBox(height: 60),
             DropdownButtonMenu(),
             const SizedBox(height: 50),
-            ElevatedButton(
-              onPressed: () {
-                print(prefValue);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SecondScreen(value: prefValue)),
-                );
-              },
-              style: ButtonStyle(
-                // backgroundColor: Color(0xFF70C495);
+            SizedBox(
+              width: 100,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  print(prefValue);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SecondScreen(value: prefValue)),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  onPrimary: Colors.black,
+                    elevation: 10
+                ),
+                child: const Text("→",style: TextStyle(fontSize: 25),),
               ),
-              child: const Text("tap me!"),
             ),
           ],
         ),
