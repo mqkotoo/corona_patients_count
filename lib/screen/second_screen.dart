@@ -5,7 +5,6 @@ import 'package:flutter_echarts/flutter_echarts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/liquid_script.dart';
-import '../service/data.dart';
 
 class SecondScreen extends ConsumerWidget {
 

@@ -40,7 +40,6 @@ class DropdownButtonMenu extends ConsumerWidget {
             onChanged: (int? value) {
                 // 感染者数の数（状態）を更新
                 ref.read(prefNumProvider.notifier).state = value!;
-                print(ref.watch(prefNumProvider));
             },
             borderRadius: BorderRadius.circular(10.0),
             // dropdownColor: Colors.indigo,
