@@ -7,12 +7,11 @@ import 'pref_data.dart';
 class DropdownButtonMenu extends ConsumerWidget {
   const DropdownButtonMenu({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context,WidgetRef ref) {
 
     //選択中の都道府県表示のために形として定義しておく　可読性のために
-    int prefNum = ref.watch(prefInfoProvider);
+    int prefNum = ref.watch(prefNumProvider);
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -40,7 +39,8 @@ class DropdownButtonMenu extends ConsumerWidget {
             value: prefNum,
             onChanged: (int? value) {
                 // 感染者数の数（状態）を更新
-                ref.read(prefInfoProvider.notifier).state = value!;
+                ref.read(prefNumProvider.notifier).state = value!;
+                print(ref.watch(prefNumProvider));
             },
             borderRadius: BorderRadius.circular(10.0),
             // dropdownColor: Colors.indigo,

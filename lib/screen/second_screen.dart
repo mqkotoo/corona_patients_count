@@ -1,71 +1,45 @@
+import 'package:corona_patients_number/perf_info_state.dart';
 import 'package:corona_patients_number/screen/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../components/liquid_script.dart';
 import '../service/data.dart';
 
-class SecondScreen extends StatefulWidget {
-  final int value;
+class SecondScreen extends ConsumerWidget {
 
-  const SecondScreen({Key? key, required this.value}) : super(key: key);
+    SecondScreen({Key? key}) : super(key: key);
 
-  @override
-  State<SecondScreen> createState() => _SecondScreenState();
-}
-
-class _SecondScreenState extends State<SecondScreen> {
   //都道府県名
-  String cityName = "";
+  late String cityName;
   //感染者数
-  int patientCount = 0;
+  late int patientCount;
   //最大感染者数
-  int maxPatientCount = 0;
-
-  bool isLoading = true;
+  late int maxPatientCount;
 
   //危険度
-  double risk = 0;
+  late double risk;
 
-  DataModel dataModel = DataModel();
 
-  Future getCityData() async {
-    //何県かまでの情報が入っている ex(0,1,2
-    var cityInfo = await dataModel.getCityData(widget.value);
-
-    cityName = cityInfo["name"];
-    patientCount = cityInfo["new"];
-    maxPatientCount = cityInfo['maxvalue'];
-
-    //整形前の危険度
-    var riskNum = patientCount / maxPatientCount;
-
-    risk = double.parse(riskNum.toStringAsFixed(2));
-
-    isLoading = false;
-
-    setState(() {});
-  }
 
   @override
-  void initState() {
-    super.initState();
-    getCityData();
-  }
+  Widget build(BuildContext context,WidgetRef ref) {
 
-  @override
-  Widget build(BuildContext context) {
+    cityName = ref.watch(prefNameProvider);
+    patientCount = ref.watch(patientNumProvider);
+    risk = ref.watch(riskProvider);
+
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
-      body: !isLoading
-          ? Center(
+      body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   cityName,
                   style:
-                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 50),
+                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
                 ),
                 // SizedBox(height: 30),
                 Stack(
@@ -120,7 +94,7 @@ class _SecondScreenState extends State<SecondScreen> {
                       Navigator.pop(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const FirstPage()),
+                            builder: (context) => FirstPage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(
@@ -138,9 +112,6 @@ class _SecondScreenState extends State<SecondScreen> {
               ],
             ),
           )
-          : const Center(
-              child: Text("loading..."),
-            ),
     );
   }
 }
