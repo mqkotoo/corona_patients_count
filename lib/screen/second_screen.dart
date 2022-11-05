@@ -8,26 +8,14 @@ import '../components/liquid_script.dart';
 
 class SecondScreen extends ConsumerWidget {
 
-    SecondScreen({Key? key}) : super(key: key);
-
-  //都道府県名
-  late String cityName;
-  //感染者数
-  late int patientCount;
-  //最大感染者数
-  late int maxPatientCount;
-
-  //危険度
-  late double risk;
-
-
+    const SecondScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
 
-    cityName = ref.watch(prefNameProvider);
-    patientCount = ref.watch(patientNumProvider);
-    risk = ref.watch(riskProvider);
+    var cityName = ref.watch(prefNameProvider);
+    var patientCount = ref.watch(patientNumProvider);
+     var risk = ref.watch(riskProvider);
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
@@ -38,7 +26,7 @@ class SecondScreen extends ConsumerWidget {
                 Text(
                   cityName,
                   style:
-                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
                 ),
                 // SizedBox(height: 30),
                 Stack(
