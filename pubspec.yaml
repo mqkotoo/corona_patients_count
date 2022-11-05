@@ -19,6 +19,7 @@ dependencies:
   flutter_echarts: ^2.4.0
   html: ^0.15.1
   dropdown_button2: ^1.8.9
+  device_preview: ^1.1.0
 
 dev_dependencies:
   flutter_test:

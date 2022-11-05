@@ -85,7 +85,11 @@ class SecondScreen extends ConsumerWidget {
                     child: const Text("←",style: TextStyle(fontSize: 25),),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 30),
+                Text(
+                    "*危険度は、最大感染者数に比べて"
+                    "現在の感染者数がどれくらいいるかで割り出しています。",
+                )
               ],
             ),
           )
