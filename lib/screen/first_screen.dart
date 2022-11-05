@@ -49,8 +49,8 @@ class FirstPage extends ConsumerWidget {
               width: deviceWidth * 0.24,
               height: deviceHeight * 0.06,
               child: ElevatedButton(
-                onPressed: () {
-                  getCityData(ref,prefValue);
+                onPressed: () async{
+                  await getCityData(ref,prefValue);
                   Navigator.push(
                     context,
                     MaterialPageRoute(
