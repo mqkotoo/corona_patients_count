@@ -22,85 +22,90 @@ class SecondScreen extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
-      body: Padding(
-          padding: EdgeInsets.fromLTRB(
-            deviceWidth * 0.072,
-            deviceHeight * 0.11,
-              deviceWidth * 0.072,
-            deviceHeight * 0.028
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      cityName,
-                      style:
-                      const TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
-                    ),
-                    // SizedBox(height: 30),
-                    Stack(
-                      alignment: AlignmentDirectional.center,
-                      children: <Widget>[
-                        //危険度
-                        SizedBox(
-                          child: Echarts(
-                            extensions: const [liquidScript],
-                            option: '''
-                {
-                  series: [{
-                      type: 'liquidFill',
-                      data: [$risk]
-                  }]
-                }
-              ''',
-                          ),
-                          width: 500,
-                          height: 416,
+      body: Center(
+        child: Column(
+          // mainAxisSize: MainAxisSize.min,
+          // mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    cityName,
+                    style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
+                  ),
+                  // SizedBox(height: 30),
+                  Stack(
+                    alignment: AlignmentDirectional.center,
+                    children: <Widget>[
+                      //危険度
+                      SizedBox(
+                        child: Echarts(
+                          extensions: const [liquidScript],
+                          option: '''
+              {
+                series: [{
+                    type: 'liquidFill',
+                    data: [$risk]
+                }]
+              }
+            ''',
                         ),
-                        const Positioned(
-                          top: 50,
-                          child: Text(
-                            "危険度*",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 25,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 40,
-                          child: Text(
-                            "感染者数：${patientCount.toString()}",
-                            style: const TextStyle(fontSize: 22),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: deviceWidth * 0.24,
-                      height: deviceHeight * 0.06,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FirstPage()),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          onPrimary: Colors.black,
-                          elevation: 10,
-                        ),
-                        child: const Text("←",style: TextStyle(fontSize: 25),),
+                        width: 500,
+                        height: 416,
                       ),
+                      const Positioned(
+                        top: 50,
+                        child: Text(
+                          "危険度*",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 40,
+                        child: Text(
+                          "感染者数：${patientCount.toString()}",
+                          style: const TextStyle(fontSize: 22),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    width: deviceWidth * 0.24,
+                    height: deviceHeight * 0.06,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FirstPage()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        onPrimary: Colors.black,
+                        elevation: 10,
+                      ),
+                      child: const Text("←",style: TextStyle(fontSize: 25),),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Text(
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(
+                deviceWidth * 0.07,
+                  0,
+                deviceWidth * 0.072,
+                deviceHeight * 0.028,
+              ),
+              alignment: Alignment.bottomCenter,
+              height: 35,
+              child: Text(
                 "*危険度は、最大感染者数に比べて"
                     "現在の感染者数がどれくらいいるかで割り出しています。",
                 style: TextStyle(
@@ -110,9 +115,10 @@ class SecondScreen extends ConsumerWidget {
                   color: Colors.black54
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
     );
   }
 }
