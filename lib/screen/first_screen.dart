@@ -9,19 +9,16 @@ import '../service/data.dart';
 class FirstPage extends ConsumerWidget {
     FirstPage({Key? key}) : super(key: key);
 
-    //最大感染者数
-    int maxPatientCount = 0;
-
-  DataModel dataModel = DataModel();
+  final DataModel dataModel = DataModel();
 
   //必要な情報諸々ゲット
   Future getCityData(WidgetRef ref,prefValue) async {
-    //cityIngfoで何県のデータにアクセスしてるか取得できる
+    //cityInfoで何県のデータにアクセスしてるか取得できる
     var cityInfo = await dataModel.getCityData(prefValue);
 
     ref.read(prefNameProvider.notifier).state = cityInfo["name"];
     ref.read(patientNumProvider.notifier).state = cityInfo["new"];
-    maxPatientCount = cityInfo['maxvalue'];
+    var maxPatientCount = cityInfo['maxvalue'];
     //整形前の危険度
     var riskNum = ref.watch(patientNumProvider) / maxPatientCount;
     ref.read(riskProvider.notifier).state = double.parse(riskNum.toStringAsFixed(2));
@@ -54,7 +51,7 @@ class FirstPage extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => SecondScreen()),
+                        builder: (context) => const SecondScreen()),
                   );
                 },
                 style: ElevatedButton.styleFrom(

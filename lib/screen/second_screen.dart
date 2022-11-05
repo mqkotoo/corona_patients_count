@@ -22,7 +22,7 @@ class SecondScreen extends ConsumerWidget {
       body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: <Widget>[
                 Text(
                   cityName,
                   style:
@@ -30,8 +30,8 @@ class SecondScreen extends ConsumerWidget {
                 ),
                 // SizedBox(height: 30),
                 Stack(
-                  alignment: AlignmentDirectional.topStart,
-                  children: [
+                  alignment: AlignmentDirectional.center,
+                  children: <Widget>[
                     //危険度
                     SizedBox(
                       child: Echarts(
@@ -48,27 +48,21 @@ class SecondScreen extends ConsumerWidget {
                       width: 500,
                       height: 416,
                     ),
-                    Positioned(
+                    const Positioned(
                       top: 50,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 160),
-                        child: const Text(
-                          "危険度",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
+                      child: Text(
+                        "危険度",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
                         ),
                       ),
                     ),
                     Positioned(
                       bottom: 40,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 130),
-                        child: Text(
-                          "感染者数：${patientCount.toString()}",
-                          style: const TextStyle(fontSize: 22),
-                        ),
+                      child: Text(
+                        "感染者数：${patientCount.toString()}",
+                        style: const TextStyle(fontSize: 22),
                       ),
                     ),
                   ],
@@ -91,11 +85,7 @@ class SecondScreen extends ConsumerWidget {
                     child: const Text("←",style: TextStyle(fontSize: 25),),
                   ),
                 ),
-                // SizedBox(height: 20),
-
-                const SizedBox(height: 20),
-                // Text("max感染者数：${maxPatientCount.toString()}"),
-                // SizedBox(height:30),
+                SizedBox(height: 20),
               ],
             ),
           )
