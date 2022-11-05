@@ -51,7 +51,7 @@ class SecondScreen extends ConsumerWidget {
                     const Positioned(
                       top: 50,
                       child: Text(
-                        "危険度",
+                        "危険度*",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
