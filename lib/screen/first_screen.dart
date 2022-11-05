@@ -27,6 +27,9 @@ class FirstPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int prefValue = ref.watch(prefNumProvider);
+
+    var deviceHeight = MediaQuery.of(context).size.height;
+    var deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
       body: Center(
@@ -43,8 +46,8 @@ class FirstPage extends ConsumerWidget {
             const DropdownButtonMenu(),
             const SizedBox(height: 50),
             SizedBox(
-              width: 100,
-              height: 50,
+              width: deviceWidth * 0.24,
+              height: deviceHeight * 0.06,
               child: ElevatedButton(
                 onPressed: () {
                   getCityData(ref,prefValue);

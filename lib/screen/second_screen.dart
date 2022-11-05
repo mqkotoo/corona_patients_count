@@ -17,82 +17,102 @@ class SecondScreen extends ConsumerWidget {
     var patientCount = ref.watch(patientNumProvider);
      var risk = ref.watch(riskProvider);
 
+     var deviceHeight = MediaQuery.of(context).size.height;
+    var deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
-      body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  cityName,
-                  style:
+      body: Padding(
+          padding: EdgeInsets.fromLTRB(
+            deviceWidth * 0.072,
+            deviceHeight * 0.11,
+              deviceWidth * 0.072,
+            deviceHeight * 0.028
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      cityName,
+                      style:
                       const TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
-                ),
-                // SizedBox(height: 30),
-                Stack(
-                  alignment: AlignmentDirectional.center,
-                  children: <Widget>[
-                    //危険度
-                    SizedBox(
-                      child: Echarts(
-                        extensions: const [liquidScript],
-                        option: '''
-                  {
-                    series: [{
-                        type: 'liquidFill',
-                        data: [$risk]
-                    }]
-                  }
-                ''',
-                      ),
-                      width: 500,
-                      height: 416,
                     ),
-                    const Positioned(
-                      top: 50,
-                      child: Text(
-                        "危険度*",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
+                    // SizedBox(height: 30),
+                    Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: <Widget>[
+                        //危険度
+                        SizedBox(
+                          child: Echarts(
+                            extensions: const [liquidScript],
+                            option: '''
+                {
+                  series: [{
+                      type: 'liquidFill',
+                      data: [$risk]
+                  }]
+                }
+              ''',
+                          ),
+                          width: 500,
+                          height: 416,
                         ),
-                      ),
+                        const Positioned(
+                          top: 50,
+                          child: Text(
+                            "危険度*",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 40,
+                          child: Text(
+                            "感染者数：${patientCount.toString()}",
+                            style: const TextStyle(fontSize: 22),
+                          ),
+                        ),
+                      ],
                     ),
-                    Positioned(
-                      bottom: 40,
-                      child: Text(
-                        "感染者数：${patientCount.toString()}",
-                        style: const TextStyle(fontSize: 22),
+                    SizedBox(
+                      width: deviceWidth * 0.24,
+                      height: deviceHeight * 0.06,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FirstPage()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          onPrimary: Colors.black,
+                          elevation: 10,
+                        ),
+                        child: const Text("←",style: TextStyle(fontSize: 25),),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  width: 100,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => FirstPage()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.black,
-                      elevation: 10,
-                    ),
-                    child: const Text("←",style: TextStyle(fontSize: 25),),
-                  ),
-                ),
-                SizedBox(height: 30),
-                Text(
-                    "*危険度は、最大感染者数に比べて"
+              ),
+              Text(
+                "*危険度は、最大感染者数に比べて"
                     "現在の感染者数がどれくらいいるかで割り出しています。",
-                )
-              ],
-            ),
-          )
+                style: TextStyle(
+                  // fontSize: 12,
+                  // fontSize: deviceHeight * 0.013,
+                  fontSize:  deviceWidth * 0.029,
+                  color: Colors.black54
+                ),
+              ),
+            ],
+          ),
+        ),
     );
   }
 }
