@@ -1,6 +1,7 @@
 import 'package:corona_patients_number/screen/second_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../components/drop_down_button_menu.dart';
 import '../perf_info_state.dart';
@@ -13,6 +14,9 @@ class FirstPage extends ConsumerWidget {
 
   //必要な情報諸々ゲット
   Future getCityData(WidgetRef ref,prefValue) async {
+    //ロード→true
+    ref.read(isLoadingProvider.notifier).state = true;
+
     //cityInfoで何県のデータにアクセスしてるか取得できる
     var cityInfo = await dataModel.getCityData(prefValue);
 
@@ -22,11 +26,16 @@ class FirstPage extends ConsumerWidget {
     //整形前の危険度
     var riskNum = ref.watch(patientNumProvider) / maxPatientCount;
     ref.read(riskProvider.notifier).state = double.parse(riskNum.toStringAsFixed(2));
+
+    await Future.delayed(const Duration(seconds: 1));
+
+    ref.read(isLoadingProvider.notifier).state = false;
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int prefValue = ref.watch(prefNumProvider);
+    bool isLoading = ref.watch(isLoadingProvider);
 
     var deviceHeight = MediaQuery.of(context).size.height;
     var deviceWidth = MediaQuery.of(context).size.width;
@@ -61,9 +70,15 @@ class FirstPage extends ConsumerWidget {
                   onPrimary: Colors.black,
                     elevation: 10
                 ),
-                child: const Text("→",style: TextStyle(fontSize: 25),),
+                child: !isLoading ?
+                const Text("→",style: TextStyle(fontSize: 25),)
+                    : LoadingAnimationWidget.prograssiveDots(
+                  color: Colors.blue,
+                  size: 25,
+                  // size: _kSize,
+                ),
+                )
               ),
-            ),
           ],
         ),
       ),

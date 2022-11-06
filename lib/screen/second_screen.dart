@@ -106,8 +106,8 @@ class SecondScreen extends ConsumerWidget {
               alignment: Alignment.bottomCenter,
               height: 35,
               child: Text(
-                "*危険度は、最大感染者数に比べて"
-                    "現在の感染者数がどれくらいいるかで割り出しています。",
+                "* 危険度は、この都道府県の最大感染者数に対して"
+                    "現在の感染者数がどれくらいかで割り出しています。",
                 style: TextStyle(
                   // fontSize: 12,
                   // fontSize: deviceHeight * 0.013,

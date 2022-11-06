@@ -6,6 +6,10 @@ final prefNameProvider = StateProvider<String>((ref)=>"東京都");
 final patientNumProvider = StateProvider<int>((ref)=>0);
 final riskProvider = StateProvider<double>((ref)=>0);
 
+
+//すみませんここでロード状況も管理させてください
+final isLoadingProvider = StateProvider<bool>((ref) => false);
+
 // final prefInfoProvider = StateProvider<PrefInfoModel>(
 //     (ref) => PrefInfoModel(
 //         prefName: "東京都",
