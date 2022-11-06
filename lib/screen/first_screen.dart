@@ -13,12 +13,22 @@ class FirstPage extends ConsumerWidget {
   final DataModel dataModel = DataModel();
 
   //必要な情報諸々ゲット
-  Future getCityData(WidgetRef ref,prefValue) async {
+  Future<void> getCityData(WidgetRef ref,prefValue,context) async {
+    var cityInfo;
     //ロード→true
     ref.read(isLoadingProvider.notifier).state = true;
 
-    //cityInfoで何県のデータにアクセスしてるか取得できる
-    var cityInfo = await dataModel.getCityData(prefValue);
+    try {
+      //cityInfoで何県のデータにアクセスしてるか取得できる
+      cityInfo = await dataModel.getCityData(prefValue);
+    } catch(e) {
+      //ロード→false
+      ref.read(isLoadingProvider.notifier).state = false;
+      throw Text("error: " + e.toString());
+    }
+
+    //成功しなかったら止めて、スナックバー出す。
+    //tryに成功したら以下の処理　画面遷移まで。
 
     ref.read(prefNameProvider.notifier).state = cityInfo["name"];
     ref.read(patientNumProvider.notifier).state = cityInfo["new"];
@@ -30,6 +40,10 @@ class FirstPage extends ConsumerWidget {
     await Future.delayed(const Duration(seconds: 1));
 
     ref.read(isLoadingProvider.notifier).state = false;
+
+    Navigator.push(context,
+      MaterialPageRoute(
+          builder: (context) => const SecondScreen()));
   }
 
   @override
@@ -41,46 +55,53 @@ class FirstPage extends ConsumerWidget {
     var deviceWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "コロナ危険度チェック",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 30),
+      body: Builder(
+        builder: (context) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "コロナ危険度チェック",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30),
+                ),
+                const SizedBox(height: 60),
+                const DropdownButtonMenu(),
+                const SizedBox(height: 50),
+                SizedBox(
+                  width: deviceWidth * 0.24,
+                  height: deviceHeight * 0.06,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      //getCityData関数を実行して、エラーをキャッチしたら、
+                      // スナックバーを表示する
+                      getCityData(ref,prefValue,context).catchError((error) {
+                        var scaffold = ScaffoldMessenger.of(context);
+                        scaffold.showSnackBar(
+                          const SnackBar(
+                            content: Center(child: Text('エラーが発生しました！')),
+                          ),
+                        );
+                      });
+                    },
+                    style: ElevatedButton.styleFrom(
+                      onPrimary: Colors.black,
+                        elevation: 10
+                    ),
+                    child: !isLoading ?
+                    const Text("→",style: TextStyle(fontSize: 25),)
+                        : LoadingAnimationWidget.prograssiveDots(
+                      color: Colors.blue,
+                      size: 25,
+                    ),
+                    )
+                  ),
+              ],
             ),
-            const SizedBox(height: 60),
-            const DropdownButtonMenu(),
-            const SizedBox(height: 50),
-            SizedBox(
-              width: deviceWidth * 0.24,
-              height: deviceHeight * 0.06,
-              child: ElevatedButton(
-                onPressed: () async{
-                  await getCityData(ref,prefValue);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SecondScreen()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  onPrimary: Colors.black,
-                    elevation: 10
-                ),
-                child: !isLoading ?
-                const Text("→",style: TextStyle(fontSize: 25),)
-                    : LoadingAnimationWidget.prograssiveDots(
-                  color: Colors.blue,
-                  size: 25,
-                  // size: _kSize,
-                ),
-                )
-              ),
-          ],
-        ),
+          );
+        }
       ),
     );
   }
