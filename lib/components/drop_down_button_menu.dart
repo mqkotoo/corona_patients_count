@@ -1,8 +1,8 @@
-import 'package:corona_patients_number/perf_info_state.dart';
+import 'package:corona_patients_number/provider/perf_info_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'pref_data.dart';
+import '../utils/pref_data.dart';
 
 class DropdownButtonMenu extends ConsumerWidget {
   const DropdownButtonMenu({Key? key}) : super(key: key);

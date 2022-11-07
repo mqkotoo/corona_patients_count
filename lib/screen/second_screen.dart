@@ -1,4 +1,4 @@
-import 'package:corona_patients_number/perf_info_state.dart';
+import 'package:corona_patients_number/provider/perf_info_state.dart';
 import 'package:corona_patients_number/screen/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_echarts/flutter_echarts.dart';
@@ -7,25 +7,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../components/liquid_script.dart';
 
 class SecondScreen extends ConsumerWidget {
-
-    const SecondScreen({Key? key}) : super(key: key);
+  const SecondScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
-
+  Widget build(BuildContext context, WidgetRef ref) {
     var cityName = ref.watch(prefNameProvider);
     var patientCount = ref.watch(patientNumProvider);
-     var risk = ref.watch(riskProvider);
+    var risk = ref.watch(riskProvider);
 
-     var deviceHeight = MediaQuery.of(context).size.height;
+    var deviceHeight = MediaQuery.of(context).size.height;
     var deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
       body: Center(
         child: Column(
-          // mainAxisSize: MainAxisSize.min,
-          // mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
               child: Column(
@@ -33,10 +29,9 @@ class SecondScreen extends ConsumerWidget {
                 children: [
                   Text(
                     cityName,
-                    style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 36),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 36),
                   ),
-                  // SizedBox(height: 30),
                   Stack(
                     alignment: AlignmentDirectional.center,
                     children: <Widget>[
@@ -45,13 +40,13 @@ class SecondScreen extends ConsumerWidget {
                         child: Echarts(
                           extensions: const [liquidScript],
                           option: '''
-              {
-                series: [{
-                    type: 'liquidFill',
-                    data: [$risk]
-                }]
-              }
-            ''',
+                              {
+                                series: [{
+                                    type: 'liquidFill',
+                                    data: [$risk]
+                                }]
+                              }
+                            ''',
                         ),
                         width: 500,
                         height: 416,
@@ -82,15 +77,17 @@ class SecondScreen extends ConsumerWidget {
                       onPressed: () {
                         Navigator.pop(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => FirstPage()),
+                          MaterialPageRoute(builder: (context) => FirstPage()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
                         onPrimary: Colors.black,
                         elevation: 10,
                       ),
-                      child: const Text("←",style: TextStyle(fontSize: 25),),
+                      child: const Text(
+                        "←",
+                        style: TextStyle(fontSize: 25),
+                      ),
                     ),
                   ),
                 ],
@@ -99,7 +96,7 @@ class SecondScreen extends ConsumerWidget {
             Container(
               margin: EdgeInsets.fromLTRB(
                 deviceWidth * 0.07,
-                  0,
+                0,
                 deviceWidth * 0.072,
                 deviceHeight * 0.028,
               ),
@@ -107,13 +104,10 @@ class SecondScreen extends ConsumerWidget {
               height: 35,
               child: Text(
                 "* 危険度は、この都道府県の最大感染者数に対して"
-                    "現在の感染者数がどれくらいかで割り出しています。",
+                "現在の感染者数がどれくらいかで割り出しています。",
                 style: TextStyle(
-                  // fontSize: 12,
-                  // fontSize: deviceHeight * 0.013,
-                  fontSize:  deviceWidth * 0.029,
-                  color: Colors.black54
-                ),
+                    fontSize: deviceWidth * 0.029,
+                    color: Colors.black54),
               ),
             ),
           ],
