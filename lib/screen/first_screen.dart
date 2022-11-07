@@ -12,6 +12,16 @@ class FirstPage extends ConsumerWidget {
 
   final DataModel dataModel = DataModel();
 
+  //snackBar中身定義
+  final SnackBar snackBar =  SnackBar(
+    content: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          Icon(Icons.error_outline,color: Colors.white,),
+          Text(' エラーが発生しました！'),
+        ]),
+  );
+
   //必要な情報諸々ゲット
   Future<void> getCityData(WidgetRef ref,prefValue,context) async {
     var cityInfo;
@@ -79,11 +89,7 @@ class FirstPage extends ConsumerWidget {
                       // スナックバーを表示する
                       getCityData(ref,prefValue,context).catchError((error) {
                         var scaffold = ScaffoldMessenger.of(context);
-                        scaffold.showSnackBar(
-                          const SnackBar(
-                            content: Center(child: Text('エラーが発生しました！')),
-                          ),
-                        );
+                        scaffold.showSnackBar(snackBar);
                       });
                     },
                     style: ElevatedButton.styleFrom(
