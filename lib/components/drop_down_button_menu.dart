@@ -31,7 +31,7 @@ class DropdownButtonMenu extends ConsumerWidget {
                       prefString,
                       DropdownMenuItem<int>(
                         value: prefNum,
-                        child: Text(prefString),
+                        child: Text(prefString,style: TextStyle(fontWeight: FontWeight.bold)),
                       ));
                 })
                 .values

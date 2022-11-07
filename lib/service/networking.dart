@@ -29,6 +29,7 @@
 //   return number;
 // });
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -49,6 +50,7 @@ class NetworkHelper {
       var cityInfo = data['data47'];
       return cityInfo;
     }else{
+      throw Text("error code: ${response.statusCode}");
       print(response.statusCode);
     }
   }
