@@ -33,6 +33,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+// import 'package:http/http.dart';
+
 class NetworkHelper {
   NetworkHelper(this.url);
 
@@ -51,7 +53,6 @@ class NetworkHelper {
       return cityInfo;
     }else{
       throw Text("error code: ${response.statusCode}");
-      print(response.statusCode);
     }
   }
 }
