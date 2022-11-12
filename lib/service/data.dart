@@ -8,6 +8,7 @@ class DataModel {
     NetworkHelper networkHelper = NetworkHelper(dataUrl);
 
     var weatherData = await networkHelper.getData();
+
     //県の番号まで付与
     weatherData = weatherData[cityNum];
     return weatherData;

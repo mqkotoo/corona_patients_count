@@ -91,6 +91,7 @@ class FirstPage extends ConsumerWidget {
                         var scaffold = ScaffoldMessenger.of(context);
                         scaffold.showSnackBar(snackBar);
                       });
+
                     },
                     style: ElevatedButton.styleFrom(
                       onPrimary: Colors.black,
@@ -102,7 +103,7 @@ class FirstPage extends ConsumerWidget {
                       color: Colors.blue,
                       size: 25,
                     ),
-                    )
+                    ),
                   ),
               ],
             ),

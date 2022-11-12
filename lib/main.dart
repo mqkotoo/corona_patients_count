@@ -11,7 +11,7 @@ void main() {
       //       builder: (context) => const MyApp(),
       //     ),
       // ),
-    ProviderScope(child: const MyApp()),
+    const ProviderScope(child: MyApp()),
   );
 }
 
