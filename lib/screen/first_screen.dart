@@ -97,8 +97,8 @@ class FirstPage extends ConsumerWidget {
                       onPrimary: Colors.black,
                         elevation: 10
                     ),
-                    child: !isLoading ?
-                    const Text("→",style: TextStyle(fontSize: 25),)
+                    child: !isLoading
+                        ? const Text("→",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold))
                         : LoadingAnimationWidget.prograssiveDots(
                       color: Colors.blue,
                       size: 25,
