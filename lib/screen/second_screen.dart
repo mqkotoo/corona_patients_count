@@ -81,7 +81,7 @@ class SecondScreen extends ConsumerWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        onPrimary: Colors.black,
+                        foregroundColor: Colors.black,
                         elevation: 10,
                       ),
                       child: const Text(
