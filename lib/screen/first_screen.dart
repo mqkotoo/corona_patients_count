@@ -1,61 +1,24 @@
-import 'package:corona_patients_number/screen/second_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../components/drop_down_button_menu.dart';
 import '../provider/perf_info_state.dart';
-import '../service/data.dart';
-// import '../view_model/view_model.dart';
+import '../view_model/view_model.dart';
 
 class FirstPage extends ConsumerWidget {
-    FirstPage({Key? key}) : super(key: key);
-
-  final DataModel dataModel = DataModel();
+  FirstPage({Key? key}) : super(key: key);
 
   //snackBar中身定義
-  final SnackBar snackBar =  SnackBar(
-    content: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Icon(Icons.error_outline,color: Colors.white,),
-          Text(' エラーが発生しました！'),
-        ]),
+  final SnackBar snackBar = SnackBar(
+    content: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
+      Icon(
+        Icons.error_outline,
+        color: Colors.white,
+      ),
+      Text(' エラーが発生しました！'),
+    ]),
   );
-
-//  必要な情報諸々ゲット
-  Future<void> getCityData(WidgetRef ref,prefValue,context) async {
-    var cityInfo;
-    //ロード→true
-    ref.read(isLoadingProvider.notifier).state = true;
-
-    try {
-      //cityInfoで何県のデータにアクセスしてるか取得できる
-      cityInfo = await dataModel.getCityData(prefValue);
-    } catch(e) {
-      //ロード→false
-      ref.read(isLoadingProvider.notifier).state = false;
-      throw Text("error: " + e.toString());
-    }
-
-    //成功しなかったら止めて、スナックバー出す。
-    //tryに成功したら以下の処理　画面遷移まで。
-
-    ref.read(prefNameProvider.notifier).state = cityInfo["name"];
-    ref.read(patientNumProvider.notifier).state = cityInfo["new"];
-    var maxPatientCount = cityInfo['maxvalue'];
-    //整形前の危険度
-    var riskNum = ref.watch(patientNumProvider) / maxPatientCount;
-    ref.read(riskProvider.notifier).state = double.parse(riskNum.toStringAsFixed(2));
-
-    await Future.delayed(const Duration(seconds: 1));
-
-    ref.read(isLoadingProvider.notifier).state = false;
-
-    Navigator.push(context,
-      MaterialPageRoute(
-          builder: (context) => const SecondScreen()));
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -64,6 +27,7 @@ class FirstPage extends ConsumerWidget {
 
     var deviceHeight = MediaQuery.of(context).size.height;
     var deviceWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
       body: Builder(
@@ -74,9 +38,7 @@ class FirstPage extends ConsumerWidget {
               children: [
                 const Text(
                   "コロナ危険度チェック",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                 ),
                 const SizedBox(height: 60),
                 const DropdownButtonMenu(),
@@ -88,28 +50,28 @@ class FirstPage extends ConsumerWidget {
                     onPressed: () {
                       //getCityData関数を実行して、エラーをキャッチしたら、
                       // スナックバーを表示する
-                      getCityData(ref,prefValue,context).catchError((error) {
+                      getCityData(ref, prefValue, context).catchError((error) {
                         var scaffold = ScaffoldMessenger.of(context);
                         scaffold.showSnackBar(snackBar);
                       });
-
                     },
                     style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.black,
-                        elevation: 10
-                    ),
+                        foregroundColor: Colors.black, elevation: 10),
                     child: !isLoading
-                        ? const Text("→",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold))
+                        ? const Text("→",
+                            style: TextStyle(
+                                fontSize: 25, fontWeight: FontWeight.bold),
+                          )
                         : LoadingAnimationWidget.prograssiveDots(
-                      color: Colors.blue,
-                      size: 25,
-                    ),
-                    ),
+                            color: Colors.blue,
+                            size: 25,
+                          ),
                   ),
+                ),
               ],
             ),
           );
-        }
+        },
       ),
     );
   }
