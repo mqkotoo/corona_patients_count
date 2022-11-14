@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../components/drop_down_button_menu.dart';
 import '../provider/perf_info_state.dart';
 import '../service/data.dart';
+// import '../view_model/view_model.dart';
 
 class FirstPage extends ConsumerWidget {
     FirstPage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class FirstPage extends ConsumerWidget {
         ]),
   );
 
-  //必要な情報諸々ゲット
+//  必要な情報諸々ゲット
   Future<void> getCityData(WidgetRef ref,prefValue,context) async {
     var cityInfo;
     //ロード→true
