@@ -104,7 +104,7 @@ class SecondScreen extends ConsumerWidget {
               height: 35,
               child: Text(
                 "* 危険度は、この都道府県の最大感染者数に対して"
-                "現在の感染者数がどれくらいかで割り出しています。",
+                "現在の感染者数がどれくらいかで割り出しています。 情報提供：NHK",
                 style: TextStyle(
                     fontSize: deviceWidth * 0.029,
                     color: Colors.black54),

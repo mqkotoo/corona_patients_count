@@ -23,6 +23,7 @@ class FirstPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int prefValue = ref.watch(prefNumProvider);
+    print(prefValue);
     bool isLoading = ref.watch(isLoadingProvider);
 
     var deviceHeight = MediaQuery.of(context).size.height;
