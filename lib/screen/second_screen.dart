@@ -16,10 +16,11 @@ class SecondScreen extends ConsumerWidget {
     final patientCount = ref.watch(patientNumProvider);
     final risk = ref.watch(riskProvider);
 
+    //危険度割合を100枚して四捨五入して整数にしている
+    var riskText = (risk * 100).round();
+
     var deviceHeight = MediaQuery.of(context).size.height;
     var deviceWidth = MediaQuery.of(context).size.width;
-
-    // Color riskTextColor = Colors.lightBlue[400]!.computeLuminance() < 0.5 ? Colors.white : Colors.black;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
@@ -58,7 +59,7 @@ class SecondScreen extends ConsumerWidget {
                           borderWidth: 6.0,
                           direction: Axis.vertical,
                           // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
-                          center: Text("$risk%",style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold)),
+                          center: Text("$riskText%",style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
