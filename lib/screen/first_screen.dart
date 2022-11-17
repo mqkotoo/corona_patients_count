@@ -23,7 +23,6 @@ class FirstPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     int prefValue = ref.watch(prefNumProvider);
-    print(prefValue);
     bool isLoading = ref.watch(isLoadingProvider);
 
     var deviceHeight = MediaQuery.of(context).size.height;
@@ -59,9 +58,15 @@ class FirstPage extends ConsumerWidget {
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black, elevation: 10),
                     child: !isLoading
-                        ? const Text("→",
-                            style: TextStyle(
-                                fontSize: 25, fontWeight: FontWeight.bold),
+                        // ? const Text("もじ",
+                        //     style: TextStyle(
+                        //         fontSize: 10,
+                        //         fontWeight: FontWeight.bold,
+                        //     ),
+                        //   )
+                        ? Text(
+                            "チェック",
+                            style: TextStyle(fontWeight: FontWeight.bold),
                           )
                         : LoadingAnimationWidget.prograssiveDots(
                             color: Colors.blue,
