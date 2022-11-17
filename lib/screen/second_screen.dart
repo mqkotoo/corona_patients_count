@@ -29,7 +29,7 @@ class SecondScreen extends ConsumerWidget {
           children: <Widget>[
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(top: 60.0),
+                padding: EdgeInsets.only(top: deviceHeight * 0.067),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -58,8 +58,7 @@ class SecondScreen extends ConsumerWidget {
                           borderColor: Colors.blue[800],
                           borderWidth: 6.0,
                           direction: Axis.vertical,
-                          // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
-                          center: Text("$riskText%",style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold)),
+                          center: Text("$riskText%",style: const TextStyle(fontSize: 35,fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
