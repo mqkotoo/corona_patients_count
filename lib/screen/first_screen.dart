@@ -58,10 +58,14 @@ class FirstPage extends ConsumerWidget {
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black, elevation: 10),
                     child: !isLoading
-                        ? Text(
-                            "チェック",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          )
+                    //小さいディスプレイの場合は、文字が二行になるのでfittedBoxで一行に収める
+                        ? FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                              "チェック",
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                        )
                         : LoadingAnimationWidget.prograssiveDots(
                             color: Colors.blue,
                             size: 25,
