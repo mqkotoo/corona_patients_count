@@ -12,12 +12,14 @@ class SecondScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var cityName = ref.watch(prefNameProvider);
-    var patientCount = ref.watch(patientNumProvider);
-    var risk = ref.watch(riskProvider);
+    final cityName = ref.watch(prefNameProvider);
+    final patientCount = ref.watch(patientNumProvider);
+    final risk = ref.watch(riskProvider);
 
     var deviceHeight = MediaQuery.of(context).size.height;
     var deviceWidth = MediaQuery.of(context).size.width;
+
+    // Color riskTextColor = Colors.lightBlue[400]!.computeLuminance() < 0.5 ? Colors.white : Colors.black;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
@@ -25,44 +27,46 @@ class SecondScreen extends ConsumerWidget {
         child: Column(
           children: <Widget>[
             Expanded(
-              child: Container(
-                margin: EdgeInsets.fromLTRB(0, 170, 0, 80),
-                // color: Colors.red,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 60.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       cityName,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 36),
                     ),
-                    SizedBox(height:20),
-                    Text(
+                    const SizedBox(height:40),
+                    const Text(
                       "危険度*",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                       ),
                     ),
-                    SizedBox(
-                      height: 250,
-                      width: 250,
-                      child: LiquidCircularProgressIndicator(
-                        value: risk,
-                        valueColor: AlwaysStoppedAnimation(Colors.lightBlue[300]!), // Defaults to the current Theme's accentColor.
-                        backgroundColor: const Color(0xFFECF5F4), // Defaults to the current Theme's backgroundColor.
-                        borderColor: Colors.blue[800],
-                        borderWidth: 6.0,
-                        direction: Axis.vertical,
-                        // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
-                        center: Text("$risk%",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
+                      child: SizedBox(
+                        height: 250,
+                        width: 250,
+                        child: LiquidCircularProgressIndicator(
+                          value: risk,
+                          valueColor: AlwaysStoppedAnimation(Colors.lightBlue[400]!), // Defaults to the current Theme's accentColor.
+                          backgroundColor: const Color(0xFFECF5F4), // Defaults to the current Theme's backgroundColor.
+                          borderColor: Colors.blue[800],
+                          borderWidth: 6.0,
+                          direction: Axis.vertical,
+                          // The direction the liquid moves (Axis.vertical = bottom to top, Axis.horizontal = left to right). Defaults to Axis.vertical.
+                          center: Text("$risk%",style: TextStyle(fontSize: 35,fontWeight: FontWeight.bold)),
+                        ),
                       ),
                     ),
                     Text(
                       "感染者数：${patientCount.toString()}",
                       style: const TextStyle(fontSize: 22),
                     ),
-                    SizedBox(height:20),
+                    const SizedBox(height:40),
                     SizedBox(
                       width: deviceWidth * 0.24,
                       height: deviceHeight * 0.06,

@@ -58,12 +58,6 @@ class FirstPage extends ConsumerWidget {
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black, elevation: 10),
                     child: !isLoading
-                        // ? const Text("もじ",
-                        //     style: TextStyle(
-                        //         fontSize: 10,
-                        //         fontWeight: FontWeight.bold,
-                        //     ),
-                        //   )
                         ? Text(
                             "チェック",
                             style: TextStyle(fontWeight: FontWeight.bold),
