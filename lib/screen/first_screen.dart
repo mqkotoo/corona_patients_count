@@ -36,13 +36,16 @@ class FirstPage extends ConsumerWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
+                Text(
                   "コロナ危険度チェック",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                  ),
                 ),
-                const SizedBox(height: 60),
+                SizedBox(height: deviceHeight * 0.067),
                 const DropdownButtonMenu(),
-                const SizedBox(height: 50),
+                SizedBox(height: deviceHeight * 0.055),
                 SizedBox(
                   width: deviceWidth * 0.24,
                   height: deviceHeight * 0.06,
@@ -56,19 +59,23 @@ class FirstPage extends ConsumerWidget {
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.black, elevation: 10),
+                        foregroundColor: Colors.black,
+                        elevation: 10),
                     child: !isLoading
                     //小さいディスプレイの場合は、文字が二行になるのでfittedBoxで一行に収める
                         ? FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
                               "チェック",
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                fontSize: deviceHeight * 0.015,
+                              ),
                             ),
                         )
                         : LoadingAnimationWidget.prograssiveDots(
                             color: Colors.blue,
-                            size: 25,
+                            size: deviceHeight * 0.028,
                           ),
                   ),
                 ),

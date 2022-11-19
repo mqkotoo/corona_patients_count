@@ -13,6 +13,8 @@ class DropdownButtonMenu extends ConsumerWidget {
     //選択中の都道府県表示のために形として定義しておく　可読性のために
     int prefNum = ref.watch(prefNumProvider);
 
+    var deviceHeight = MediaQuery.of(context).size.height;
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -31,7 +33,13 @@ class DropdownButtonMenu extends ConsumerWidget {
                       prefString,
                       DropdownMenuItem<int>(
                         value: prefNum,
-                        child: Text(prefString,style: const TextStyle(fontWeight: FontWeight.bold)),
+                        child: Text(
+                            prefString,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              fontSize: deviceHeight * 0.018
+                            ),
+                        ),
                       ));
                 })
                 .values

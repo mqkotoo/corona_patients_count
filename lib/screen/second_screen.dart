@@ -81,9 +81,12 @@ class SecondScreen extends ConsumerWidget {
                           foregroundColor: Colors.black,
                           elevation: 10,
                         ),
-                        child: const Text(
+                        child: Text(
                           "もどる",
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: deviceHeight * 0.015,
+                          ),
                         ),
                       ),
                     ),
@@ -104,7 +107,7 @@ class SecondScreen extends ConsumerWidget {
                 "* 危険度は、この都道府県の最大感染者数に対して"
                 "現在の感染者数がどれくらいかで割り出しています。 情報提供：NHK",
                 style: TextStyle(
-                    fontSize: deviceWidth * 0.029, color: Colors.black54),
+                    fontSize: 12, color: Colors.black54),
               ),
             ),
           ],
