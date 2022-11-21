@@ -1,4 +1,4 @@
-package com.example.corona_patients_number
+package com.app.corona_patients_number
 
 import io.flutter.embedding.android.FlutterActivity
 
