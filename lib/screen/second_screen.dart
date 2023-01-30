@@ -1,7 +1,6 @@
 import 'package:corona_patients_number/provider/perf_info_state.dart';
 import 'package:corona_patients_number/screen/first_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_echarts/flutter_echarts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
