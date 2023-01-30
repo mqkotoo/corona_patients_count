@@ -10,7 +10,7 @@ class FirstPage extends ConsumerWidget {
   FirstPage({Key? key}) : super(key: key);
 
   //snackBar中身定義
-  final SnackBar snackBar = SnackBar(
+  final SnackBar _snackBar = SnackBar(
     content: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
       Icon(
         Icons.error_outline,
@@ -22,11 +22,11 @@ class FirstPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final  prefValue = ref.watch(prefNumProvider);
-    bool isLoading = ref.watch(isLoadingProvider);
+    final  _prefValue = ref.watch(prefNumProvider);
+    bool _isLoading = ref.watch(isLoadingProvider);
 
-    final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWidth = MediaQuery.of(context).size.width;
+    final _deviceHeight = MediaQuery.of(context).size.height;
+    final _deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
@@ -43,25 +43,25 @@ class FirstPage extends ConsumerWidget {
                       fontSize: 30,
                   ),
                 ),
-                SizedBox(height: deviceHeight * 0.067),
+                SizedBox(height: _deviceHeight * 0.067),
                 const DropdownButtonMenu(),
-                SizedBox(height: deviceHeight * 0.055),
+                SizedBox(height: _deviceHeight * 0.055),
                 SizedBox(
-                  width: deviceWidth * 0.24,
-                  height: deviceHeight * 0.06,
+                  width: _deviceWidth * 0.24,
+                  height: _deviceHeight * 0.06,
                   child: ElevatedButton(
                     onPressed: () {
                       //getCityData関数を実行して、エラーをキャッチしたら、
                       // スナックバーを表示する
-                      getCityData(ref, prefValue, context).catchError((error) {
+                      getCityData(ref, _prefValue, context).catchError((error) {
                         var scaffold = ScaffoldMessenger.of(context);
-                        scaffold.showSnackBar(snackBar);
+                        scaffold.showSnackBar(_snackBar);
                       });
                     },
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,
                         elevation: 10),
-                    child: !isLoading
+                    child: !_isLoading
                     //小さいディスプレイの場合は、文字が二行になるのでfittedBoxで一行に収める
                         ? FittedBox(
                           fit: BoxFit.fitWidth,
@@ -69,13 +69,13 @@ class FirstPage extends ConsumerWidget {
                               "チェック",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                fontSize: deviceHeight * 0.015,
+                                fontSize: _deviceHeight * 0.015,
                               ),
                             ),
                         )
                         : LoadingAnimationWidget.prograssiveDots(
                             color: Colors.blue,
-                            size: deviceHeight * 0.028,
+                            size: _deviceHeight * 0.028,
                           ),
                   ),
                 ),

@@ -9,15 +9,15 @@ class SecondScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cityName = ref.watch(prefNameProvider);
-    final patientCount = ref.watch(patientNumProvider);
-    final risk = ref.watch(riskProvider);
+    final _cityName = ref.watch(prefNameProvider);
+    final _patientCount = ref.watch(patientNumProvider);
+    final _risk = ref.watch(riskProvider);
 
     //危険度割合を100枚して四捨五入して整数にしている
-    final int riskText = (risk * 100).round();
+    final int _riskText = (_risk * 100).round();
 
-    final deviceHeight = MediaQuery.of(context).size.height;
-    final deviceWidth = MediaQuery.of(context).size.width;
+    final _deviceHeight = MediaQuery.of(context).size.height;
+    final _deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
@@ -26,12 +26,12 @@ class SecondScreen extends ConsumerWidget {
           children: <Widget>[
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(top: deviceHeight * 0.067),
+                padding: EdgeInsets.only(top: _deviceHeight * 0.067),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      cityName,
+                      _cityName,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 36),
                     ),
@@ -49,24 +49,24 @@ class SecondScreen extends ConsumerWidget {
                         height: 250,
                         width: 250,
                         child: LiquidCircularProgressIndicator(
-                          value: risk,
+                          value: _risk,
                           valueColor: AlwaysStoppedAnimation(Colors.lightBlue[400]!), // Defaults to the current Theme's accentColor.
                           backgroundColor: const Color(0xFFECF5F4), // Defaults to the current Theme's backgroundColor.
                           borderColor: Colors.blue[800],
                           borderWidth: 6.0,
                           direction: Axis.vertical,
-                          center: Text("$riskText%",style: const TextStyle(fontSize: 35,fontWeight: FontWeight.bold)),
+                          center: Text("$_riskText%",style: const TextStyle(fontSize: 35,fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
                     Text(
-                      "感染者数：${patientCount.toString()}",
+                      "感染者数：${_patientCount.toString()}",
                       style: const TextStyle(fontSize: 22),
                     ),
                     const SizedBox(height:40),
                     SizedBox(
-                      width: deviceWidth * 0.24,
-                      height: deviceHeight * 0.06,
+                      width: _deviceWidth * 0.24,
+                      height: _deviceHeight * 0.06,
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.pop(
@@ -82,7 +82,7 @@ class SecondScreen extends ConsumerWidget {
                           "もどる",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: deviceHeight * 0.015,
+                              fontSize: _deviceHeight * 0.015,
                           ),
                         ),
                       ),
@@ -93,10 +93,10 @@ class SecondScreen extends ConsumerWidget {
             ),
             Container(
               margin: EdgeInsets.fromLTRB(
-                deviceWidth * 0.072,
+                _deviceWidth * 0.072,
                 0,
-                deviceWidth * 0.072,
-                deviceHeight * 0.03,
+                _deviceWidth * 0.072,
+                _deviceHeight * 0.03,
               ),
               alignment: Alignment.bottomCenter,
               height: 35,
