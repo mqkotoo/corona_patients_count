@@ -9,28 +9,3 @@ final riskProvider = StateProvider<double>((ref)=>0);
 
 //すみませんここでロード状況も管理させてください
 final isLoadingProvider = StateProvider<bool>((ref) => false);
-
-// final prefInfoProvider = StateProvider<PrefInfoModel>(
-//     (ref) => PrefInfoModel(
-//         prefName: "東京都",
-//         prefNum: 12,
-//         patientNum : 0,
-//         risk: 0,
-//     )
-// );
-
-
-
-// //保持するデータのモデル
-// class PrefInfoModel {
-//   String prefName;
-//   int prefNum;
-//   int patientNum;
-//   double risk;
-//   PrefInfoModel(
-//       {required this.prefName,
-//         required this.prefNum,
-//         required this.patientNum,
-//         required this.risk}
-//         );
-// }

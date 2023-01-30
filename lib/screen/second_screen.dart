@@ -5,8 +5,6 @@ import 'package:flutter_echarts/flutter_echarts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
-import '../components/liquid_script.dart';
-
 class SecondScreen extends ConsumerWidget {
   const SecondScreen({Key? key}) : super(key: key);
 
@@ -17,10 +15,10 @@ class SecondScreen extends ConsumerWidget {
     final risk = ref.watch(riskProvider);
 
     //危険度割合を100枚して四捨五入して整数にしている
-    var riskText = (risk * 100).round();
+    final int riskText = (risk * 100).round();
 
-    var deviceHeight = MediaQuery.of(context).size.height;
-    var deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),

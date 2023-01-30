@@ -4,13 +4,13 @@ const dataUrl = "https://www3.nhk.or.jp/n-data/special/coronavirus/data/latest-p
 
 class DataModel {
 
-  Future<dynamic> getCityData(int cityNum) async {
+  Future<dynamic> getPrefData(int prefNum) async {
     NetworkHelper networkHelper = NetworkHelper(dataUrl);
 
-    var weatherData = await networkHelper.getData();
+    var prefData = await networkHelper.getData();
 
     //県の番号まで付与
-    weatherData = weatherData[cityNum];
-    return weatherData;
+    prefData = prefData[prefNum];
+    return prefData;
   }
 }

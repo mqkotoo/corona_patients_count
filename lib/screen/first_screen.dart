@@ -22,11 +22,11 @@ class FirstPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    int prefValue = ref.watch(prefNumProvider);
+    final  prefValue = ref.watch(prefNumProvider);
     bool isLoading = ref.watch(isLoadingProvider);
 
-    var deviceHeight = MediaQuery.of(context).size.height;
-    var deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),

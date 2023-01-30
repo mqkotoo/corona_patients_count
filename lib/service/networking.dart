@@ -49,8 +49,8 @@ class NetworkHelper {
 
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(utf8.decode(response.bodyBytes));
-      var cityInfo = data['data47'];
-      return cityInfo;
+      var prefInfo = data['data47'];
+      return prefInfo;
     }else{
       throw Text("error code: ${response.statusCode}");
     }

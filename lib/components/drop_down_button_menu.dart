@@ -11,9 +11,8 @@ class DropdownButtonMenu extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
 
     //選択中の都道府県表示のために形として定義しておく　可読性のために
-    int prefNum = ref.watch(prefNumProvider);
-
-    var deviceHeight = MediaQuery.of(context).size.height;
+    final int prefNum = ref.watch(prefNumProvider);
+    final deviceHeight = MediaQuery.of(context).size.height;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
