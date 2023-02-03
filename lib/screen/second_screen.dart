@@ -106,7 +106,7 @@ class SecondScreen extends ConsumerWidget {
               child: Text(
                 S.of(context).description,
                 style: TextStyle(
-                    fontSize: 12, color: Colors.black54),
+                    fontSize: 10, color: Colors.black54),
               ),
             ),
           ],
