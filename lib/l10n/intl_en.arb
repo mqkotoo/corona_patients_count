@@ -1,0 +1,8 @@
+{
+  "title": "COVID-19 risk check",
+  "check": "check",
+  "riskLabel": "risk(%)",
+  "infectedPatients": "infected patients",
+  "back": "back",
+  "description": "The risk level is calculated by how many people are currently infected compared to the maximum number of people infected in this prefecture. Information provided by NHK."
+}

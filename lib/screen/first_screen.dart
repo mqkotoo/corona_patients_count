@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../components/drop_down_button_menu.dart';
+import '../generated/l10n.dart';
 import '../provider/perf_info_state.dart';
 import '../view_model/view_model.dart';
 
@@ -37,7 +38,7 @@ class FirstPage extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "コロナ危険度チェック",
+                  S.of(context).title,
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
@@ -66,7 +67,7 @@ class FirstPage extends ConsumerWidget {
                         ? FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
-                              "チェック",
+                            S.of(context).check,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                 fontSize: _deviceHeight * 0.015,

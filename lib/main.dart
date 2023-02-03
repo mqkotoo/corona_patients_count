@@ -1,6 +1,8 @@
 import 'package:corona_patients_number/screen/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()),
@@ -23,6 +25,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
       ),
+      //多言語対応
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       home: FirstPage(),
     );
   }
