@@ -19,7 +19,7 @@ class FirstPage extends ConsumerWidget {
     final _deviceWidth = MediaQuery.of(context).size.width;
 
     //snackBar中身定義
-    final SnackBar _snackBar = SnackBar(
+    SnackBar _snackBar = SnackBar(
       content: Row(mainAxisAlignment: MainAxisAlignment.center, children:[
         Icon(
           Icons.error_outline,
@@ -51,6 +51,8 @@ class FirstPage extends ConsumerWidget {
                   width: _deviceWidth * 0.24,
                   height: _deviceHeight * 0.06,
                   child: ElevatedButton(
+                    //key for test
+                    key: Key("check_button"),
                     onPressed: () {
                       //getCityData関数を実行して、エラーをキャッチしたら、
                       // スナックバーを表示する

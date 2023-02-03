@@ -87,6 +87,7 @@ class SecondScreen extends ConsumerWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: _deviceHeight * 0.015,
                           ),
+                            key: Key("back_button")
                         ),
                       ),
                     ),
