@@ -10,17 +10,6 @@ import '../view_model/view_model.dart';
 class FirstPage extends ConsumerWidget {
   FirstPage({Key? key}) : super(key: key);
 
-  //snackBar中身定義
-  final SnackBar _snackBar = SnackBar(
-    content: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
-      Icon(
-        Icons.error_outline,
-        color: Colors.white,
-      ),
-      Text(' エラーが発生しました！'),
-    ]),
-  );
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final  _prefValue = ref.watch(prefNumProvider);
@@ -28,6 +17,17 @@ class FirstPage extends ConsumerWidget {
 
     final _deviceHeight = MediaQuery.of(context).size.height;
     final _deviceWidth = MediaQuery.of(context).size.width;
+
+    //snackBar中身定義
+    final SnackBar _snackBar = SnackBar(
+      content: Row(mainAxisAlignment: MainAxisAlignment.center, children:[
+        Icon(
+          Icons.error_outline,
+          color: Colors.white,
+        ),
+        Text(S.of(context).errorMessage),
+      ]),
+    );
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
