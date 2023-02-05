@@ -34,13 +34,13 @@ void main() {
 
     //英語でアプリ起動
     await tester.pumpWidget(ProviderScope(child: myTestWidget(Locale('en'))));
-    // await tester.pump();
     await tester.pumpAndSettle();
 
     // 英語のテスト
     expect(find.text('COVID-19 risk check'), findsOneWidget);
     expect(find.text('check'), findsOneWidget);
     expect(find.text('チェック'), findsNothing);
+
   });
 
   testWidgets("多言語対応のテスト 日本語", (WidgetTester tester) async {
