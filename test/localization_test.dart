@@ -1,43 +1,56 @@
+import 'package:corona_patients_number/generated/l10n.dart';
 import 'package:corona_patients_number/main.dart';
-import 'package:corona_patients_number/screen/second_screen.dart';
+import 'package:corona_patients_number/screen/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 
 void main() {
-  testWidgets('多言語対応のテスト', (WidgetTester tester) async {
-    //アプリ起動
-    await tester.pumpWidget(ProviderScope(child: MyApp()));
 
-    // Verify that the widget is displayed correctly in English
+  Widget myTestWidget(Locale locale) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+      ),
+      //多言語対応
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      locale: locale,
+      home: FirstPage(),
+    );
+  }
+
+  testWidgets('多言語対応のテスト 英語', (WidgetTester tester) async {
+    // //アプリ起動
+    // await tester.pumpWidget(ProviderScope(child: MyApp()));
+
+    //英語でアプリ起動
+    await tester.pumpWidget(ProviderScope(child: myTestWidget(Locale('en'))));
+    // await tester.pump();
+    await tester.pumpAndSettle();
+
+    // 英語のテスト
     expect(find.text('COVID-19 risk check'), findsOneWidget);
     expect(find.text('check'), findsOneWidget);
     expect(find.text('チェック'), findsNothing);
-    expect(find.byKey(ValueKey("check_button")),findsOneWidget);
+  });
 
-    // await tester.tap(find.byKey(ValueKey("check_button")));
-    // await tester.pump();
-    // expect(find.byType(SecondScreen),findsOneWidget);
-    // await tester.pumpAndSettle();
-    // expect(find.byType(SecondScreen),findsOneWidget);;
+  testWidgets("多言語対応のテスト 日本語", (WidgetTester tester) async {
+    //日本語でアプリ起動
+    await tester.pumpWidget(ProviderScope(child: myTestWidget(Locale('ja'))));
+    await tester.pumpAndSettle();
 
-    //遷移できているか
-    // expect(find.byKey(ValueKey("back_button")), findsOneWidget);
-    
-    // expect(find.text("back"), findsOneWidget);
-    // expect(find.text('COVID-19 risk check'), findsNothing);
-    // expect(find.text("risk(%)"),findsOneWidget);
-
-    // // Change the locale to Japanese
-    // //日本語設定でビルド
-    // await tester.pumpWidget(myAppTest('ja'));
-    // await tester.pumpAndSettle();
-
-    // Verify that the widget is displayed correctly in Japanese
-    // expect(find.text('コロナ危険度チェック'), findsOneWidget);
-    // await tester.tap(find.widgetWithText(ElevatedButton, "チェック"));
-    // await tester.pumpAndSettle();
-    // expect(find.text('危険度（％）'), findsOneWidget);
+    // 日本語のテスト
+    expect(find.text('コロナ危険度チェック'), findsOneWidget);
+    expect(find.text('check'), findsNothing);
+    expect(find.text('チェック'), findsOneWidget);
   });
 }
