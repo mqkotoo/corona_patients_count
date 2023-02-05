@@ -1,5 +1,4 @@
 import 'package:corona_patients_number/generated/l10n.dart';
-import 'package:corona_patients_number/main.dart';
 import 'package:corona_patients_number/screen/first_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
