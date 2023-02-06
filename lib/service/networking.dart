@@ -8,7 +8,6 @@ class NetworkHelper {
   final String url;
 
   Future getData() async {
-
     http.Response response =
     await http.get(Uri.parse(
       url,

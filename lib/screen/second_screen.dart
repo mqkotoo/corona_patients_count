@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
+import '../generated/l10n.dart';
+
 class SecondScreen extends ConsumerWidget {
   const SecondScreen({Key? key}) : super(key: key);
 
@@ -36,8 +38,9 @@ class SecondScreen extends ConsumerWidget {
                           fontWeight: FontWeight.bold, fontSize: 36),
                     ),
                     const SizedBox(height:40),
-                    const Text(
-                      "危険度*",
+                    Text(
+                      S.of(context).riskLabel,
+                      // "危険度*",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -60,7 +63,7 @@ class SecondScreen extends ConsumerWidget {
                       ),
                     ),
                     Text(
-                      "感染者数：${_patientCount.toString()}",
+                      "${S.of(context).infectedPatients}：${_patientCount.toString()}",
                       style: const TextStyle(fontSize: 22),
                     ),
                     const SizedBox(height:40),
@@ -79,7 +82,7 @@ class SecondScreen extends ConsumerWidget {
                           elevation: 10,
                         ),
                         child: Text(
-                          "もどる",
+                          S.of(context).back,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: _deviceHeight * 0.015,
@@ -101,10 +104,9 @@ class SecondScreen extends ConsumerWidget {
               alignment: Alignment.bottomCenter,
               height: 35,
               child: Text(
-                "* 危険度は、この都道府県の最大感染者数に対して"
-                "現在の感染者数がどれくらいかで割り出しています。 情報提供：NHK",
+                S.of(context).description,
                 style: TextStyle(
-                    fontSize: 12, color: Colors.black54),
+                    fontSize: 10, color: Colors.black54),
               ),
             ),
           ],

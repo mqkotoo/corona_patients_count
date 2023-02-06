@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localization: ^0.1.10
+
 
 
   flutter_riverpod: ^1.0.3
@@ -39,4 +41,5 @@ flutter_icons:
 flutter:
 
   uses-material-design: true
-
+flutter_intl:
+  enabled: true
