@@ -22,6 +22,7 @@ dependencies:
   loading_animation_widget: ^1.2.0+3
   liquid_progress_indicator: ^0.4.0
   flutter_launcher_icons: ^0.11.0
+  get_it: ^7.2.0
 
 
 dev_dependencies:
