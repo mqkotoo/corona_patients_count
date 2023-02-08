@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:corona_patients_number/service/data.dart';
@@ -69,6 +68,7 @@ main() {
 }
         ''',
         200,
+        //返される内容に日本語があったら、文字コードで怒られるので以下のコードを書く
         headers: {
           HttpHeaders.contentTypeHeader: 'application/json; charset=utf-8',
         }));
