@@ -109,6 +109,16 @@ class S {
       args: [],
     );
   }
+
+  /// `An error has occurred!`
+  String get errorMessage {
+    return Intl.message(
+      'An error has occurred!',
+      name: 'errorMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

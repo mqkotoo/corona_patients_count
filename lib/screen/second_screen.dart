@@ -23,11 +23,11 @@ class SecondScreen extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: Padding(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Padding(
                 padding: EdgeInsets.only(top: _deviceHeight * 0.067),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -93,23 +93,18 @@ class SecondScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.fromLTRB(
-                _deviceWidth * 0.072,
-                0,
-                _deviceWidth * 0.072,
-                _deviceHeight * 0.03,
+              Expanded(child: SizedBox.shrink()),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: _deviceWidth * 0.072),
+                child: Text(
+                  S.of(context).description,
+                  style: TextStyle(
+                      fontSize: 10, color: Colors.black54),
+                ),
               ),
-              alignment: Alignment.bottomCenter,
-              height: 35,
-              child: Text(
-                S.of(context).description,
-                style: TextStyle(
-                    fontSize: 10, color: Colors.black54),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

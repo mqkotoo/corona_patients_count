@@ -26,6 +26,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "check": MessageLookupByLibrary.simpleMessage("check"),
         "description": MessageLookupByLibrary.simpleMessage(
             "The risk level is calculated by how many people are currently infected compared to the maximum number of people infected in this prefecture. Information provided by NHK."),
+        "errorMessage":
+            MessageLookupByLibrary.simpleMessage("An error has occurred!"),
         "infectedPatients":
             MessageLookupByLibrary.simpleMessage("infected patients"),
         "riskLabel": MessageLookupByLibrary.simpleMessage("risk(%)"),

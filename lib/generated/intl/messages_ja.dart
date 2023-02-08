@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "check": MessageLookupByLibrary.simpleMessage("チェック"),
         "description": MessageLookupByLibrary.simpleMessage(
             "*危険度は、この都道府県の最大感染者数に対して現在の感染者数がどれくらいかで割り出しています。 情報提供：NHK"),
+        "errorMessage": MessageLookupByLibrary.simpleMessage("エラーが発生しました！"),
         "infectedPatients": MessageLookupByLibrary.simpleMessage("感染者数"),
         "riskLabel": MessageLookupByLibrary.simpleMessage("危険度（％）"),
         "title": MessageLookupByLibrary.simpleMessage("コロナ危険度チェック")
