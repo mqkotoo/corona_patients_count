@@ -15,7 +15,7 @@ class NetworkHelper {
     await client.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
-      Map<String, dynamic> data = jsonDecode(response.body);
+      Map<String, dynamic> data = jsonDecode(utf8.decode(response.bodyBytes));
       var prefInfo = data['data47'];
       return prefInfo;
     }else{
