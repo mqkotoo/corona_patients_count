@@ -51,8 +51,6 @@ class FirstPage extends ConsumerWidget {
                   width: _deviceWidth * 0.24,
                   height: _deviceHeight * 0.06,
                   child: ElevatedButton(
-                    //key for test
-                    key: Key("check_button"),
                     onPressed: () {
                       //getCityData関数を実行して、エラーをキャッチしたら、
                       // スナックバーを表示する

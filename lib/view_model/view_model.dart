@@ -8,7 +8,7 @@ import '../service/data.dart';
 final DataModel dataModel = DataModel();
 
 //必要な情報諸々ゲット
-Future<void> getCityData(WidgetRef ref,prefValue,context) async {
+Future<void> getCityData(WidgetRef ref,int prefValue,context) async {
   var _prefInfo;
   //ロード→true
   ref.read(isLoadingProvider.notifier).state = true;
