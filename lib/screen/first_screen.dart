@@ -12,14 +12,14 @@ class FirstPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final  _prefValue = ref.watch(prefNumProvider);
-    bool _isLoading = ref.watch(isLoadingProvider);
+    final  prefValue = ref.watch(prefNumProvider);
+    bool isLoading = ref.watch(isLoadingProvider);
 
-    final _deviceHeight = MediaQuery.of(context).size.height;
-    final _deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
 
     //snackBar中身定義
-    SnackBar _snackBar = SnackBar(
+    SnackBar snackBar = SnackBar(
       content: Row(mainAxisAlignment: MainAxisAlignment.center, children:[
         const Icon(
           Icons.error_outline,
@@ -44,25 +44,25 @@ class FirstPage extends ConsumerWidget {
                       fontSize: 30,
                   ),
                 ),
-                SizedBox(height: _deviceHeight * 0.067),
+                SizedBox(height: deviceHeight * 0.067),
                 const DropdownButtonMenu(),
-                SizedBox(height: _deviceHeight * 0.055),
+                SizedBox(height: deviceHeight * 0.055),
                 SizedBox(
-                  width: _deviceWidth * 0.24,
-                  height: _deviceHeight * 0.06,
+                  width: deviceWidth * 0.24,
+                  height: deviceHeight * 0.06,
                   child: ElevatedButton(
                     onPressed: () {
                       //getCityData関数を実行して、エラーをキャッチしたら、
                       // スナックバーを表示する
-                      getCityData(ref, _prefValue, context).catchError((error) {
+                      getCityData(ref, prefValue, context).catchError((error) {
                         var scaffold = ScaffoldMessenger.of(context);
-                        scaffold.showSnackBar(_snackBar);
+                        scaffold.showSnackBar(snackBar);
                       });
                     },
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.black,
                         elevation: 10),
-                    child: !_isLoading
+                    child: !isLoading
                     //小さいディスプレイの場合は、文字が二行になるのでfittedBoxで一行に収める
                         ? FittedBox(
                           fit: BoxFit.fitWidth,
@@ -70,13 +70,13 @@ class FirstPage extends ConsumerWidget {
                             S.of(context).check,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                fontSize: _deviceHeight * 0.015,
+                                fontSize: deviceHeight * 0.015,
                               ),
                             ),
                         )
                         : LoadingAnimationWidget.prograssiveDots(
                             color: Colors.blue,
-                            size: _deviceHeight * 0.028,
+                            size: deviceHeight * 0.028,
                           ),
                   ),
                 ),
