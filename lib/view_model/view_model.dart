@@ -9,7 +9,7 @@ final DataModel _dataModel = DataModel();
 
 //必要な情報諸々ゲット
 Future<void> getCityData(WidgetRef ref,int prefValue,context) async {
-  dynamic prefInfo;
+  Map<String, dynamic> prefInfo;
   //ロード→true
   ref.read(isLoadingProvider.notifier).state = true;
 
