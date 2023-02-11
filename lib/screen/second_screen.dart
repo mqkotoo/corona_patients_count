@@ -11,15 +11,15 @@ class SecondScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _cityName = ref.watch(prefNameProvider);
-    final _patientCount = ref.watch(patientNumProvider);
-    final _risk = ref.watch(riskProvider);
+    final cityName = ref.watch(prefNameProvider);
+    final patientCount = ref.watch(patientNumProvider);
+    final risk = ref.watch(riskProvider);
 
     //危険度割合を100枚して四捨五入して整数にしている
-    final int _riskText = (_risk * 100).round();
+    final int riskText = (risk * 100).round();
 
-    final _deviceHeight = MediaQuery.of(context).size.height;
-    final _deviceWidth = MediaQuery.of(context).size.width;
+    final deviceHeight = MediaQuery.of(context).size.height;
+    final deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: const Color(0xFFE1F9F8),
@@ -28,12 +28,12 @@ class SecondScreen extends ConsumerWidget {
           child: Column(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(top: _deviceHeight * 0.067),
+                padding: EdgeInsets.only(top: deviceHeight * 0.067),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      _cityName,
+                      cityName,
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 36),
                     ),
@@ -41,7 +41,7 @@ class SecondScreen extends ConsumerWidget {
                     Text(
                       S.of(context).riskLabel,
                       // "危険度*",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                       ),
@@ -52,29 +52,29 @@ class SecondScreen extends ConsumerWidget {
                         height: 250,
                         width: 250,
                         child: LiquidCircularProgressIndicator(
-                          value: _risk,
+                          value: risk,
                           valueColor: AlwaysStoppedAnimation(Colors.lightBlue[400]!), // Defaults to the current Theme's accentColor.
                           backgroundColor: const Color(0xFFECF5F4), // Defaults to the current Theme's backgroundColor.
                           borderColor: Colors.blue[800],
                           borderWidth: 6.0,
                           direction: Axis.vertical,
-                          center: Text("$_riskText%",style: const TextStyle(fontSize: 35,fontWeight: FontWeight.bold)),
+                          center: Text("$riskText%",style: const TextStyle(fontSize: 35,fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
                     Text(
-                      "${S.of(context).infectedPatients}：${_patientCount.toString()}",
+                      "${S.of(context).infectedPatients}：${patientCount.toString()}",
                       style: const TextStyle(fontSize: 22),
                     ),
                     const SizedBox(height:40),
                     SizedBox(
-                      width: _deviceWidth * 0.24,
-                      height: _deviceHeight * 0.06,
+                      width: deviceWidth * 0.24,
+                      height: deviceHeight * 0.06,
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.pop(
                             context,
-                            MaterialPageRoute(builder: (context) => FirstPage()),
+                            MaterialPageRoute(builder: (context) => const FirstPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -85,7 +85,7 @@ class SecondScreen extends ConsumerWidget {
                           S.of(context).back,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: _deviceHeight * 0.015,
+                              fontSize: deviceHeight * 0.015,
                           ),
                         ),
                       ),
@@ -93,13 +93,13 @@ class SecondScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              Expanded(child: SizedBox.shrink()),
+              const Expanded(child: SizedBox.shrink()),
               Container(
                 margin: EdgeInsets.symmetric(
-                  horizontal: _deviceWidth * 0.072),
+                  horizontal: deviceWidth * 0.072),
                 child: Text(
                   S.of(context).description,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 10, color: Colors.black54),
                 ),
               ),

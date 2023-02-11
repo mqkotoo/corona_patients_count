@@ -38,14 +38,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //多言語対応
-      localizationsDelegates: [
+      localizationsDelegates: const[
         S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate
       ],
       supportedLocales: S.delegate.supportedLocales,
-      home: FirstPage(),
+      home: const FirstPage(),
     );
   }
 }
