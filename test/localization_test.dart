@@ -15,7 +15,7 @@ void main() {
         useMaterial3: true,
       ),
       //多言語対応
-      localizationsDelegates: [
+      localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -23,7 +23,7 @@ void main() {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: locale,
-      home: FirstPage(),
+      home: const FirstPage(),
     );
   }
 
@@ -32,7 +32,7 @@ void main() {
     // await tester.pumpWidget(ProviderScope(child: MyApp()));
 
     //英語でアプリ起動
-    await tester.pumpWidget(ProviderScope(child: myTestWidget(Locale('en'))));
+    await tester.pumpWidget(ProviderScope(child: myTestWidget(const Locale('en'))));
     await tester.pumpAndSettle();
 
     // 英語のテスト
@@ -44,7 +44,7 @@ void main() {
 
   testWidgets("多言語対応のテスト 日本語", (WidgetTester tester) async {
     //日本語でアプリ起動
-    await tester.pumpWidget(ProviderScope(child: myTestWidget(Locale('ja'))));
+    await tester.pumpWidget(ProviderScope(child: myTestWidget(const Locale('ja'))));
     await tester.pumpAndSettle();
 
     // 日本語のテスト

@@ -41,7 +41,7 @@ class SecondScreen extends ConsumerWidget {
                     Text(
                       S.of(context).riskLabel,
                       // "危険度*",
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                       ),
@@ -74,7 +74,7 @@ class SecondScreen extends ConsumerWidget {
                         onPressed: () {
                           Navigator.pop(
                             context,
-                            MaterialPageRoute(builder: (context) => FirstPage()),
+                            MaterialPageRoute(builder: (context) => const FirstPage()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -93,13 +93,13 @@ class SecondScreen extends ConsumerWidget {
                   ],
                 ),
               ),
-              Expanded(child: SizedBox.shrink()),
+              const Expanded(child: SizedBox.shrink()),
               Container(
                 margin: EdgeInsets.symmetric(
                   horizontal: _deviceWidth * 0.072),
                 child: Text(
                   S.of(context).description,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 10, color: Colors.black54),
                 ),
               ),

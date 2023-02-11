@@ -8,7 +8,7 @@ import '../provider/perf_info_state.dart';
 import '../view_model/view_model.dart';
 
 class FirstPage extends ConsumerWidget {
-  FirstPage({Key? key}) : super(key: key);
+  const FirstPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -21,7 +21,7 @@ class FirstPage extends ConsumerWidget {
     //snackBar中身定義
     SnackBar _snackBar = SnackBar(
       content: Row(mainAxisAlignment: MainAxisAlignment.center, children:[
-        Icon(
+        const Icon(
           Icons.error_outline,
           color: Colors.white,
         ),
@@ -39,7 +39,7 @@ class FirstPage extends ConsumerWidget {
               children: [
                 Text(
                   S.of(context).title,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
                   ),

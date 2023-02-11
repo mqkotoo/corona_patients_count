@@ -19,7 +19,7 @@ Future<void> getCityData(WidgetRef ref,int prefValue,context) async {
   } catch(e) {
     //ロード→false
     ref.read(isLoadingProvider.notifier).state = false;
-    throw Text("error: " + e.toString());
+    throw Text("error: $e");
   }
 
   //成功しなかったら止めて、スナックバー出す。
