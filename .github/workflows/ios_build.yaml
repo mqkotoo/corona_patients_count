@@ -1,4 +1,4 @@
-name: Flutter iOS Build
+name: iOS Build
 
 on:
   push:
