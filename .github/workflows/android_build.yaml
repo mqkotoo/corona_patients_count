@@ -22,7 +22,7 @@ jobs:
           channel: 'stable'
           cache: true
       - run: flutter pub get
-      - run: flutter build appbundle --release
+      - run: flutter build apk --release
 
       # 成果物アップロード
       - name: artifact upload
@@ -31,6 +31,6 @@ jobs:
           # 保存ファイル名（name.zip）
           name: android
           # 保存するファイル
-          path: ./build/app/outputs/
+          path: ./build/app/outputs/flutter-apk/app-release.apk
           # 保存期間（日）
           retention-days: 1
