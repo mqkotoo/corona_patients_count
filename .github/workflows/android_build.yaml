@@ -18,11 +18,12 @@ jobs:
           java-version: '12.x'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.6'
+          flutter-version: '3.7.9'
           channel: 'stable'
           cache: true
       - run: flutter pub get
-      - run: flutter build apk --release
+      - run: flutter build apk
+      - run: flutter build appbundle
 
       # 成果物アップロード
       - name: artifact upload
