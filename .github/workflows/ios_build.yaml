@@ -22,7 +22,7 @@ jobs:
       - run: flutter build ios --release --no-codesign
       # 成果物アップロード
       - name: artifact upload
-        uses: actions/upload-artifact@v2.2.0
+        uses: actions/upload-artifact@v3
         with:
           # 保存ファイル名（name.zip）
           name: ios

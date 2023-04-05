@@ -22,12 +22,11 @@ jobs:
           channel: 'stable'
           cache: true
       - run: flutter pub get
-      - run: flutter build apk
       - run: flutter build appbundle
 
       # 成果物アップロード
       - name: artifact upload
-        uses: actions/upload-artifact@v2.2.0
+        uses: actions/upload-artifact@v3
         with:
           # 保存ファイル名（name.zip）
           name: android
